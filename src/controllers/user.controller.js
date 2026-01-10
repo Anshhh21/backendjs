@@ -149,9 +149,9 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
     // Clear the accessToken and refreshToken cookies
     User.findByIdAndUpdate(req.user._id, 
-        { $set:
+        { $unset:
             {
-            refreshToken: undefined
+            refreshToken:1
             } 
         }, { 
             new: true
