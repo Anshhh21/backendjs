@@ -50,7 +50,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
     }
 
     const tweets = await Tweet.find({ postedBy: userId }).sort({ createdAt: -1 });
-
+    
     if (!tweets) {
         throw new ApiError(404, "No tweets found for this user");
     }
@@ -120,7 +120,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
         throw new ApiError (404, "Tweet not found");
     } 
     
-    if (tweet.postedBy.toString()=== userId.toString()) {
+    if (tweet.postedBy.toString() !== userId.toString()) {
         throw new ApiError(403, "You are not authorized to delete this tweet");
     }
 

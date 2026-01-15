@@ -11,12 +11,12 @@ const getAllVideos = asyncHandler(async (req, res) => {
     const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query
     //TODO: get all videos based on query, sort, pagination
 
-    
+
 })
 
 const publishAVideo = asyncHandler(async (req, res) => {
     const { title, description} = req.body
-    if (!title || !description) {
+    if (!title?.trim() || !description?.trim()) {
         throw new ApiError(400, "Title and description are required")
     }
 
